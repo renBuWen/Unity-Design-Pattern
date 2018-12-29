@@ -48,6 +48,8 @@ namespace ComponentPatternExample
 
         public void Start()
         {
+
+            //HACK :【01】初始化并添加到List中
             inputComponent = new PlayerInputComponent();
             physicsComponent = new PlayerPhysicsComponent();
             graphicsComponent = new PlayerGraphicsComponent();
@@ -66,6 +68,15 @@ namespace ComponentPatternExample
             {
                 return;
             }
+
+            //HACK :【01】关键位置
+            //HACK :【01】我的思考
+            /*
+             * 01-将所有的脚本放到一个List中，然后for循环遍历这个List
+             *     01 :可以控制哪个组件优先执行，使用键排序的List
+             *     02 :可以让List中的每个元素都去维护一个东西
+             *     03 :有两层，List中的东西是一层，调用List的那个地方是一层（全局掌控层）
+             */
             componentAmount = ComponentList.Count;
             for (int i = 0; i < componentAmount; i++)
             {
