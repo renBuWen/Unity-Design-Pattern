@@ -1,10 +1,4 @@
-﻿//-------------------------------------------------------------------------------------
-//	DataLocalityPatternExample.cs
-//-------------------------------------------------------------------------------------
-
-using UnityEngine;
-using System.Collections;
-using System;
+﻿using UnityEngine;
 
 namespace DataLocalityPatternExample
 {
@@ -20,7 +14,7 @@ namespace DataLocalityPatternExample
 
         void Update()
         {
-            if (gameProject!=null)
+            if (gameProject != null)
             {
                 gameProject.Update();
             }
@@ -37,7 +31,7 @@ namespace DataLocalityPatternExample
         int numEntities;
 
         /// <summary>
-        /// 基于大数组存储保证数据连续性
+        /// 基于"大数组"存储保证"数据连续性"
         /// </summary>
         AIComponent[] aiComponents = new AIComponent[MAX_ENTITIES];
         PhysicsComponent[] physicsComponents = new PhysicsComponent[MAX_ENTITIES];
@@ -61,7 +55,7 @@ namespace DataLocalityPatternExample
             // Process AI.
             for (int i = 0; i < numEntities; i++)
             {
-                if (aiComponents!=null && aiComponents.Length>i && aiComponents[i]!= null)
+                if (aiComponents != null && aiComponents.Length > i && aiComponents[i] != null)
                 {
                     aiComponents[i].Update();
                 }
@@ -137,4 +131,4 @@ namespace DataLocalityPatternExample
         }
 
     }
-    }
+}

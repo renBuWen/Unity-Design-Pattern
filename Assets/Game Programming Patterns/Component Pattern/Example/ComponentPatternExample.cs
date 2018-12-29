@@ -1,9 +1,4 @@
-﻿//-------------------------------------------------------------------------------------
-//	ComponentPatternExample.cs
-//-------------------------------------------------------------------------------------
-
-using UnityEngine;
-using System.Collections;
+﻿using UnityEngine;
 using System.Collections.Generic;
 
 namespace ComponentPatternExample

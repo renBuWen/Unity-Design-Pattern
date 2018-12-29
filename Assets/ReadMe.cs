@@ -13,4 +13,5 @@ using UnityEngine;
 public class ReadMe : MonoBehaviour 
 {
     //HACK :【01】组件模式
+    //HACK :【02】数据局部性模式
 }
