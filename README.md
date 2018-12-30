@@ -1,4 +1,4 @@
-#01 Component Pattern 组件模式
+# 01 Component Pattern 组件模式
 
 ## 01.01- Intent 意义
 Allow a single entity to **span** multiple domains without **coupling** the domains to each other
