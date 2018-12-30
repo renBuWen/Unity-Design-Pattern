@@ -1,10 +1,4 @@
-﻿//-------------------------------------------------------------------------------------
-//	DirtyFlagPatternExample.cs
-//-------------------------------------------------------------------------------------
-
-using UnityEngine;
-using System.Collections;
-using System;
+﻿using UnityEngine;
 
 namespace DirtyFlagPatternExample
 {
@@ -128,10 +122,13 @@ namespace DirtyFlagPatternExample
         /// </summary>
         public void render(TransformEX parentWorld, bool dirty)
         {
+            //HACK :【03】关键，bool值还能这样运算
             //如果父链中它之上的任何物体标记为脏，则它将被置为true
+            //当且仅当两个操作数均为 false 时，结果才为 false
             dirty |= dirty_;
 
-            //而当节点没有改动时（dirty=false），跳过combine的过程，否则，表示此链为脏，进行combine
+            //而当节点没有改动时（dirty=false），跳过combine的过程，
+            //否则，表示此链为脏，进行combine
             if (dirty)
             {
                 Debug.Log("this node is dirty,combine it!");
