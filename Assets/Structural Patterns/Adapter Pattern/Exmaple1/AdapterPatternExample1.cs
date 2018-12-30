@@ -1,13 +1,11 @@
-﻿//-------------------------------------------------------------------------------------
-//	AdapterPatternExample1.cs
-//-------------------------------------------------------------------------------------
+﻿using UnityEngine;
 
-using UnityEngine;
-using System.Collections;
-
-
-//Convert the interface of a class into another interface clients expect. Adapter lets classes work together that couldn't otherwise because of incompatible interfaces.
-//This real-world code demonstrates the use of a legacy chemical databank. Chemical compound objects access the databank through an Adapter interface.
+/*
+ * Convert the interface of a class into another interface clients expect.
+ * Adapter lets classes work together that couldn't otherwise because of incompatible interfaces.
+ * This real-world code demonstrates the use of a legacy chemical databank. 
+ * Chemical compound objects access the databank through an Adapter interface.
+ */
 
 namespace AdapterPatternExample1
 {
@@ -16,60 +14,72 @@ namespace AdapterPatternExample1
         void Start()
         {
             // Non-adapted chemical compound
-            Compound unknown = new Compound("Unknown");
+            Compound unknown = new Compound(CompoundName.Unknown.ToString());
             unknown.Display();
 
             // Adapted chemical compounds
-            Compound water = new RichCompound("Water");
+            Compound water = new RichCompound(CompoundName.Water.ToString());
             water.Display();
 
-            Compound benzene = new RichCompound("Benzene");
+            Compound benzene = new RichCompound(CompoundName.Benzene.ToString());
             benzene.Display();
 
-            Compound ethanol = new RichCompound("Ethanol");
+            Compound ethanol = new RichCompound(CompoundName.Ethanol.ToString());
             ethanol.Display();
         }
     }
 
-    /// <summary>
-    /// The 'Target' class
-    /// </summary>
-    class Compound
-    {
-        protected string _chemical;
-        protected float _boilingPoint;
-        protected float _meltingPoint;
-        protected double _molecularWeight;
-        protected string _molecularFormula;
 
-        // Constructor
+    enum CompoundName
+    {
+        Unknown,
+        Water,
+        Benzene,
+        Ethanol
+    }
+
+    /// <summary>
+    /// The "Target" class
+    /// </summary>
+    class Compound  /*混合物,复合词*/
+    {
+        //HACK :【04】父类就是标准，子类必须严格遵守这个标准.
+        //但可以有自己的特质,即自己的构造器，自己的Display()
+        protected string _chemical;          //化学制品，化学药品
+        protected float _boilingPoint;       //沸点
+        protected float _meltingPoint;       //熔点
+        protected double _molecularWeight;   //分子重量
+        protected string _molecularFormula;  //分子式
+
         public Compound(string chemical)
         {
-            this._chemical = chemical;
+            Debug.Log("基类 : Compound " + chemical);
+            _chemical = chemical;
         }
 
         public virtual void Display()
         {
-            Debug.Log("\nCompound:  " + _chemical + "------");
+            Debug.Log("基类 :Compound :  " + _chemical + "------");
         }
     }
 
     /// <summary>
-    /// The 'Adapter' class
+    /// The "Adapter" class
     /// </summary>
     class RichCompound : Compound
     {
+        //只是一个针对这个例子抽离出来的一个工具类
         private ChemicalDatabank _bank;
 
-        // Constructor
-        public RichCompound(string name)
-          : base(name)
+        public RichCompound(string name) : base(name)
         {
+            Debug.Log("子类 : RichCompound " + name);
         }
 
         public override void Display()
         {
-            // The Adaptee
+            //HACK :【04】适应者
+            // The Adaptee : 适应者
             _bank = new ChemicalDatabank();
 
             _boilingPoint = _bank.GetCriticalPoint(_chemical, "B");
@@ -78,22 +88,29 @@ namespace AdapterPatternExample1
             _molecularFormula = _bank.GetMolecularStructure(_chemical);
 
             base.Display();
-            Debug.Log(" Formula: " + _molecularFormula);
-            Debug.Log(" Weight : " + _molecularWeight);
-            Debug.Log(" Melting Pt: " + _meltingPoint);
-            Debug.Log(" Boiling Pt: " + _boilingPoint);
+            Debug.Log(" Formula    :  " + _molecularFormula);
+            Debug.Log(" Weight     :  " + _molecularWeight);
+            Debug.Log(" Melting Pt :  " + _meltingPoint);
+            Debug.Log(" Boiling Pt :  " + _boilingPoint);
         }
     }
 
     /// <summary>
-    /// The 'Adaptee' class
+    /// The "Adaptee" class : 适应者
+    /// 化学品数据银行
     /// </summary>
     class ChemicalDatabank
     {
         // The databank 'legacy API'
+        /// <summary>
+        /// Critical : 关键点
+        /// </summary>
+        /// <param name="compound">化学品名字</param>
+        /// <param name="point"></param>
+        /// <returns></returns>
         public float GetCriticalPoint(string compound, string point)
         {
-            // Melting Point
+            //熔点
             if (point == "M")
             {
                 switch (compound.ToLower())
@@ -104,7 +121,7 @@ namespace AdapterPatternExample1
                     default: return 0f;
                 }
             }
-            // Boiling Point
+            //沸点
             else
             {
                 switch (compound.ToLower())
@@ -116,7 +133,11 @@ namespace AdapterPatternExample1
                 }
             }
         }
-
+        /// <summary>
+        /// 得到分子的结构/构造
+        /// </summary>
+        /// <param name="compound">化学品名字</param>
+        /// <returns></returns>
         public string GetMolecularStructure(string compound)
         {
             switch (compound.ToLower())

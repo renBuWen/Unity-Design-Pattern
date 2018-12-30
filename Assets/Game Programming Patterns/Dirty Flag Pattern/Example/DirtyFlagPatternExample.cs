@@ -19,7 +19,7 @@ namespace DirtyFlagPatternExample
 
         void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Alpha1))
+            if (Input.GetKeyDown(KeyCode.K))
             {
                 //修改位置,触发脏标记
                 TransformEX newLocalTransform = new TransformEX();
@@ -117,9 +117,14 @@ namespace DirtyFlagPatternExample
             dirty_ = true;
         }
 
+
         /// <summary>
         /// 渲染
+        /// <para>参数1 : 你传入的目标数据</para>
+        /// <para>参数2 : 将你传入的标记为“脏”</para>
         /// </summary>
+        /// <param name="parentWorld"></param>
+        /// <param name="dirty"></param>
         public void render(TransformEX parentWorld, bool dirty)
         {
             //HACK :【03】关键，bool值还能这样运算
