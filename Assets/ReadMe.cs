@@ -12,10 +12,12 @@ using UnityEngine;
 
 public class ReadMe : MonoBehaviour
 {
-    //HACK :【01】组件模式【架构】
-    //HACK :【02】数据局部性模式【优化】
-    //HACK :【03】脏标记模式【优化】
+    // Step :【01】组件模式【架构】
+    // Step :【02】数据局部性模式【优化】
+    // Step :【03】脏标记模式【优化】
+    // Step :【04】适配器
+    // Step :【05】享元模式
 
-    //HACK :【04】适配器
+
 }
 

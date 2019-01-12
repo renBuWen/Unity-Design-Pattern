@@ -43,7 +43,7 @@ namespace AdapterPatternExample1
     /// </summary>
     class Compound  /*混合物,复合词*/
     {
-        //HACK :【04】父类就是标准，子类必须严格遵守这个标准.
+        // Step :【04】父类就是标准，子类必须严格遵守这个标准.
         //但可以有自己的特质,即自己的构造器，自己的Display()
         protected string _chemical;          //化学制品，化学药品
         protected float _boilingPoint;       //沸点
@@ -78,7 +78,7 @@ namespace AdapterPatternExample1
 
         public override void Display()
         {
-            //HACK :【04】适应者
+            // Step :【04】适应者
             // The Adaptee : 适应者
             _bank = new ChemicalDatabank();
 

@@ -1,9 +1,4 @@
-﻿//-------------------------------------------------------------------------------------
-//	FlyweightPatternExample1.cs
-//-------------------------------------------------------------------------------------
-
-using UnityEngine;
-using System.Collections;
+﻿using UnityEngine;
 using System.Collections.Generic;
 
 //This real-world code demonstrates the Flyweight pattern in which a relatively small number of Character objects is shared many times by a document that has potentially many characters.

@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 
 /* Iterator provides uniform way to access different collections of objects
- * If you get an Array, ArrayList, Hashtable of objects, you pop out an iterator for each and treat them the same
+ * 如果 you get an Array, ArrayList, Hashtable of objects, you pop out an iterator for each and treat them the same
  * 
  * This provides a uniform way to cycle through different collections
  * 

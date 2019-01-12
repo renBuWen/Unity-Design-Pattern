@@ -118,7 +118,7 @@ namespace DecoratorPatternExample2
 
         // this way would force to create an infinite amount of subclasses for each type of pizza
         // and if cost if calculated off of individual topings you would have to change cost for all pizzas
-        // if cost for one topping chages
+        // 如果 cost for one topping chages
         public class ThreeCheesePizza : Pizza
         {
             public override void SetDescription(string newDescription)

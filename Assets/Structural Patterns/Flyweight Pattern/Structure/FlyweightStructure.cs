@@ -30,6 +30,7 @@ using System.Collections;
 
 public class FlyweightStructure : MonoBehaviour
 {
+    // Step :【05】调用
     void Start()
     {
         // Arbitrary extrinsic state(外部状态)
@@ -48,45 +49,43 @@ public class FlyweightStructure : MonoBehaviour
         fz.Operation(--externalState);
 
         UnsharedConcreteFlyweight fu = new
-          UnsharedConcreteFlyweight();
+        UnsharedConcreteFlyweight();
 
         fu.Operation(--externalState);
 
     }
 }
 
-/// <summary>
-/// The 'FlyweightFactory' class
-/// </summary>
+
+// Step :【05】享元工厂
 class FlyweightFactory
 {
-    private Hashtable flyweights = new Hashtable();
+    // Step :【05】将所有的“内在状态”对象都放进一个List中
 
-    // Constructor
+    // Note :【01】哈希表的使用
+    private Hashtable ht_flyweights = new Hashtable();
+
     public FlyweightFactory()
     {
-        flyweights.Add("X", new ConcreteFlyweight());
-        flyweights.Add("Y", new ConcreteFlyweight());
-        flyweights.Add("Z", new ConcreteFlyweight());
+        ht_flyweights.Add("X", new ConcreteFlyweight());
+        ht_flyweights.Add("Y", new ConcreteFlyweight());
+        ht_flyweights.Add("Z", new ConcreteFlyweight());
     }
 
+    // Step :【05】从List中取出“小对象”
     public Flyweight GetFlyweight(string key)
     {
-        return ((Flyweight)flyweights[key]);
+        return ((Flyweight)ht_flyweights[key]);
     }
 }
 
-/// <summary>
-/// The 'Flyweight' abstract class
-/// </summary>
+
+#region 细胞粒度的简单对象
 abstract class Flyweight
 {
     public abstract void Operation(int externalState);
 }
 
-/// <summary>
-/// The 'ConcreteFlyweight' class
-/// </summary>
 class ConcreteFlyweight : Flyweight
 {
     public override void Operation(int externalState)
@@ -94,10 +93,9 @@ class ConcreteFlyweight : Flyweight
         Debug.Log("ConcreteFlyweight: " + externalState);
     }
 }
+#endregion
 
-/// <summary>
-/// The 'UnsharedConcreteFlyweight' class
-/// </summary>
+
 class UnsharedConcreteFlyweight : Flyweight
 {
     public override void Operation(int externalState)

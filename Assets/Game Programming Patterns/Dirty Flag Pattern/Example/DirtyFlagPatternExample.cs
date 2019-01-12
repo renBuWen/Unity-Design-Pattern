@@ -127,7 +127,7 @@ namespace DirtyFlagPatternExample
         /// <param name="dirty"></param>
         public void render(TransformEX parentWorld, bool dirty)
         {
-            //HACK :【03】关键，bool值还能这样运算
+            // Step :【03】关键，bool值还能这样运算
             //如果父链中它之上的任何物体标记为脏，则它将被置为true
             //当且仅当两个操作数均为 false 时，结果才为 false
             dirty |= dirty_;

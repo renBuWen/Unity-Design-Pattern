@@ -44,7 +44,7 @@ namespace ComponentPatternExample
         public void Start()
         {
 
-            //HACK :【01】初始化并添加到List中
+            // Step :【01】初始化并添加到List中
             inputComponent = new PlayerInputComponent();
             physicsComponent = new PlayerPhysicsComponent();
             graphicsComponent = new PlayerGraphicsComponent();
@@ -64,8 +64,8 @@ namespace ComponentPatternExample
                 return;
             }
 
-            //HACK :【01】关键位置
-            //HACK :【01】我的思考
+            // Step :【01】关键位置
+            // Step :【01】我的思考
             /*
              * 01-将所有的脚本放到一个List中，然后for循环遍历这个List
              *     01 :可以控制哪个组件优先执行，使用键排序的List

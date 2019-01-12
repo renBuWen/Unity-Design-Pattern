@@ -1,73 +1,62 @@
-﻿//-------------------------------------------------------------------------------------
-//	CommandStructure.cs
-//-------------------------------------------------------------------------------------
-
-using UnityEngine;
-using System.Collections;
+﻿using UnityEngine;
 
 namespace CommandStructure
 {
     public class CommandStructure : MonoBehaviour
     {
-	    void Start ( )
+        void Start()
         {
-            // Create receiver, command, and invoker
-            Receiver receiver = new Receiver();
-            Command command = new ConcreteCommand(receiver);
-            Invoker invoker = new Invoker();
+            Receiver receiver = new Receiver();               // 厨师
+            Command command = new ConcreteCommand(receiver);  // 点一道菜
+            Invoker invoker = new Invoker();                  // 客人
 
-            // Set and execute command
+            // 客人提出对“菜”的要求
             invoker.SetCommand(command);
             invoker.ExecuteCommand();
         }
     }
 
     /// <summary>
-    /// The 'Command' abstract class
+    /// 命令封装的基础模板
     /// </summary>
     abstract class Command
     {
+        // 谁接收，谁去做
         protected Receiver receiver;
 
-        // Constructor
         public Command(Receiver receiver)
         {
             this.receiver = receiver;
         }
 
+        // 执行
         public abstract void Execute();
     }
 
-    /// <summary>
-    /// The 'ConcreteCommand' class
-    /// </summary>
     class ConcreteCommand : Command
     {
-        // Constructor
-        public ConcreteCommand(Receiver receiver) :
-          base(receiver)
-        {
-        }
+        public ConcreteCommand(Receiver receiver) : base(receiver) { }
 
         public override void Execute()
         {
-            receiver.Action();
+            receiver.Action1();
         }
     }
 
     /// <summary>
-    /// The 'Receiver' class
+    /// 功能的提供者,相当于“厨师”
     /// </summary>
     class Receiver
     {
-        public void Action()
+        //功能1
+        public void Action1()
         {
-          Debug.Log("Called Receiver.Action()");
+            Debug.Log("Called Receiver.Action()");
         }
     }
 
     /// <summary>
-    /// The 'Invoker' class
+    /// 下命令的“客人”，命令管理者
     /// </summary>
     class Invoker
     {
